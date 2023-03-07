@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Togrul\Desktop\AdminPanel2-master\FrontToBack2
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Togrul/Desktop/AdminPanel2-master/FrontToBack2/Areas/AdminArea/Views/Account/Registr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5BcmVhXFZpZXdzXEFjY291bnRcUmVnaXN0ci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Togrul/Desktop/AdminPanel2-master/FrontToBack2/Areas/AdminArea/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5BcmVhXFZpZXdzXENhdGVnb3J5XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

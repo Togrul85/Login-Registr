@@ -805,3 +805,4 @@ C:\Users\Togrul\Desktop\AdminPanel2-master\FrontToBack2\obj\Debug\net6.0\refint\
 C:\Users\Togrul\Desktop\AdminPanel2-master\FrontToBack2\obj\Debug\net6.0\FrontToBack2.pdb
 C:\Users\Togrul\Desktop\AdminPanel2-master\FrontToBack2\obj\Debug\net6.0\FrontToBack2.genruntimeconfig.cache
 C:\Users\Togrul\Desktop\AdminPanel2-master\FrontToBack2\obj\Debug\net6.0\ref\FrontToBack2.dll
+C:\Users\Togrul\Desktop\AdminPanel2-master\FrontToBack2\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

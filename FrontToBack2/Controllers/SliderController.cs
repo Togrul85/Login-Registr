@@ -4,7 +4,7 @@ using FrontToBack2.Models;
 using FrontToBack2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FrontToBack2.Areas.AdminArea.Controllers
+namespace FrontToBack2.Controllers
 {
 
     [Area("AdminArea")]
@@ -22,16 +22,16 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
         {
             return View(_appDbContext.Sliders.ToList());
         }
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-      
-        public IActionResult  Create  (SliderCreateVM sliderCreateVM)
+
+        public IActionResult Create(SliderCreateVM sliderCreateVM)
         {
-            if (sliderCreateVM.Photo==null)
+            if (sliderCreateVM.Photo == null)
             {
                 ModelState.AddModelError("Photo", "bosh qoyma");
                 return View();
@@ -41,7 +41,7 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
             {
                 ModelState.AddModelError("Photo", "only image");
                 return View();
-            }   
+            }
             if (sliderCreateVM.Photo.CheckImageSize(500))
             {
                 ModelState.AddModelError("Photo", "olcusu boyukdur");
@@ -56,11 +56,11 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
             //    {
             //    sliderCreateVM.Photo.CopyTo(stream);
             //}
-           
-              
-           
+
+
+
             Slider newSlider = new();
-            newSlider.ImageUrl = sliderCreateVM.Photo.SaveImage(_env,"img",sliderCreateVM.Photo.FileName);
+            newSlider.ImageUrl = sliderCreateVM.Photo.SaveImage(_env, "img", sliderCreateVM.Photo.FileName);
 
             _appDbContext.Sliders.Add(newSlider);
             _appDbContext.SaveChanges();
@@ -68,21 +68,21 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
 
         }
 
-        public IActionResult Delete (int id) 
+        public IActionResult Delete(int id)
         {
             if (id == null) return NotFound();
-            var slider = _appDbContext.Sliders.FirstOrDefault(s=>s.Id== id);
+            var slider = _appDbContext.Sliders.FirstOrDefault(s => s.Id == id);
             if (slider == null) return NotFound();
-            string fullPath = Path.Combine(_env.WebRootPath,"img",slider.ImageUrl);
-            if (System.IO.File.Exists(fullPath))
-            {
-                System.IO.File.Delete(fullPath);
-            }
-            
+            string fullPath = Path.Combine(_env.WebRootPath, "img", slider.ImageUrl);
+            //if (File.Exists(fullPath))
+            //{
+            //    File.Delete(fullPath);
+            //}
+
             _appDbContext.Remove(slider);
             _appDbContext.SaveChanges();
             return RedirectToAction("Index");
-  
+
         }
         public IActionResult Edit(int id)
         {

@@ -3,7 +3,7 @@ using FrontToBack2.Models;
 using FrontToBack2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FrontToBack2.Areas.AdminArea.Controllers
+namespace FrontToBack2.Controllers
 {
     [Area("AdminArea")]
     public class CategoryController : Controller
@@ -21,11 +21,11 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
         }
         public IActionResult Detail(int id)
         {
-           
+
             {
                 if (id == null) return NotFound();
-                Category category= _appDbContext.Categories.SingleOrDefault(c => c.Id==id);
-                if (category ==null)
+                Category category = _appDbContext.Categories.SingleOrDefault(c => c.Id == id);
+                if (category == null)
                 {
                     return NotFound();
                 }
@@ -61,8 +61,8 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
         public IActionResult Create(CategoryCreateVM category)
         {
             if (!ModelState.IsValid) return View();
-            
-            bool isExist  = _appDbContext.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower());
+
+            bool isExist = _appDbContext.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower());
             if (isExist)
                 ModelState.AddModelError("Name", "Bu adli c movcuddur");
             {
@@ -91,11 +91,11 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
             {
                 return NotFound();
             }
-            return View(new CategoryUpdateVM { Name=category.Name,Description=category.Description});
+            return View(new CategoryUpdateVM { Name = category.Name, Description = category.Description });
 
         }
         [HttpPost]
-        public  IActionResult Edit( int id,CategoryUpdateVM updateVM)
+        public IActionResult Edit(int id, CategoryUpdateVM updateVM)
         {
             if (id == null) return NotFound();
 
@@ -103,7 +103,7 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
             Category existCategory = _appDbContext.Categories.Find(id);
             if (!ModelState.IsValid) return View();
 
-            bool isExist = _appDbContext.Categories.Any(c => c.Name.ToLower() == updateVM.Name.ToLower()&&c.Id!=id);
+            bool isExist = _appDbContext.Categories.Any(c => c.Name.ToLower() == updateVM.Name.ToLower() && c.Id != id);
             if (isExist)
                 ModelState.AddModelError("Name", "Bu adli c movcuddur");
             {
@@ -111,16 +111,16 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
             }
             if (existCategory == null)
             {
-     return NotFound();
+                return NotFound();
             }
-            existCategory.Name= updateVM.Name;
-            existCategory.Description= updateVM.Description;
+            existCategory.Name = updateVM.Name;
+            existCategory.Description = updateVM.Description;
             _appDbContext.SaveChanges();
-            
+
             return RedirectToAction("Index");
 
         }
-      
+
         public IActionResult Delete(int id)
         {
             if (id == null) return NotFound();
@@ -129,7 +129,7 @@ namespace FrontToBack2.Areas.AdminArea.Controllers
 
             if (category == null)
             {
-    return NotFound();
+                return NotFound();
             }
             _appDbContext.Categories.Remove(category);
             return RedirectToAction("Index");
